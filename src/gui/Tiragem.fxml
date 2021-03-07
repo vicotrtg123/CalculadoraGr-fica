@@ -1,41 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="359.0" prefWidth="684.0" style="-fx-background-color: #00b0ff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="359.0" prefWidth="684.0" style="-fx-background-color: #00b0ff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TiragemController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d4eaff" height="37.0" stroke="BLACK" strokeType="INSIDE" width="684.0" />
       <Label layoutX="14.0" layoutY="6.0" text="Calculo de Tiragem">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-      <Label layoutX="21.0" layoutY="47.0" prefHeight="19.0" prefWidth="49.0" text="Formato">
+      <Label layoutX="18.0" layoutY="47.0" prefHeight="19.0" prefWidth="49.0" text="Formato">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <TextField layoutX="14.0" layoutY="63.0" prefHeight="25.0" prefWidth="64.0" />
-      <Label layoutX="86.0" layoutY="47.0" text="Montagem" textAlignment="CENTER" textOverrun="CLIP">
+      <TextField fx:id="txtFormato" layoutX="11.0" layoutY="63.0" prefHeight="25.0" prefWidth="64.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></TextField>
+      <Label layoutX="87.0" layoutY="47.0" text="Montagem" textAlignment="CENTER" textOverrun="CLIP">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <TextField layoutX="86.0" layoutY="63.0" prefHeight="25.0" prefWidth="64.0" />
-      <TextField layoutX="14.0" layoutY="111.0" prefHeight="25.0" prefWidth="64.0" />
-      <Label layoutX="15.0" layoutY="92.0" text="Cor Frente" textAlignment="CENTER" textOverrun="CLIP">
+      <TextField fx:id="txtMontagem" layoutX="87.0" layoutY="63.0" prefHeight="25.0" prefWidth="64.0" />
+      <TextField fx:id="txtCorFrente" layoutX="161.0" layoutY="63.0" prefHeight="25.0" prefWidth="64.0" />
+      <Label layoutX="163.0" layoutY="47.0" text="Cor Frente" textAlignment="CENTER" textOverrun="CLIP">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <TextField layoutX="87.0" layoutY="111.0" prefHeight="25.0" prefWidth="64.0" />
-      <Label layoutX="91.0" layoutY="92.0" text="Cor Verso" textAlignment="CENTER" textOverrun="CLIP">
+      <TextField fx:id="txtCorVerso" layoutX="234.0" layoutY="63.0" prefHeight="25.0" prefWidth="64.0" />
+      <Label layoutX="237.0" layoutY="47.0" text="Cor Verso" textAlignment="CENTER" textOverrun="CLIP">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
+      <Label layoutX="311.0" layoutY="47.0" text="Qtd Cores Máquina" textAlignment="CENTER" textOverrun="CLIP">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtQtdCoresMaquina" layoutX="311.0" layoutY="63.0" prefHeight="25.0" prefWidth="112.0" />
+      <Label layoutX="436.0" layoutY="47.0" text="Qtd Folhas Acerto" textAlignment="CENTER" textOverrun="CLIP">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtQtdFolhasAcerto" layoutX="436.0" layoutY="63.0" prefHeight="25.0" prefWidth="104.0" />
+      <Label layoutX="555.0" layoutY="47.0" text="Qtd Folhas de Perda" textAlignment="CENTER" textOverrun="CLIP">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtQtdFolhasPerda" layoutX="555.0" layoutY="63.0" prefHeight="25.0" prefWidth="117.0" />
+      <Button fx:id="btCalcular" layoutX="17.0" layoutY="300.0" mnemonicParsing="false" onAction="#onBtCalcularAction" text="Calcular" />
+      <Label fx:id="labelResultado" layoutX="87.0" layoutY="302.0" prefHeight="25.0" prefWidth="223.0" />
+      <CheckBox fx:id="checkTiraRetira" layoutX="12.0" layoutY="104.0" mnemonicParsing="false" text="Tira/Retira" />
    </children>
 </AnchorPane>
