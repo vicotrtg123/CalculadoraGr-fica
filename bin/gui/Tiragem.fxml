@@ -63,6 +63,16 @@
       <TextField fx:id="txtQtdFolhasPerda" layoutX="555.0" layoutY="63.0" prefHeight="25.0" prefWidth="117.0" />
       <Button fx:id="btCalcular" layoutX="17.0" layoutY="300.0" mnemonicParsing="false" onAction="#onBtCalcularAction" text="Calcular" />
       <Label fx:id="labelResultado" layoutX="87.0" layoutY="302.0" prefHeight="25.0" prefWidth="223.0" />
-      <CheckBox fx:id="checkTiraRetira" layoutX="12.0" layoutY="104.0" mnemonicParsing="false" text="Tira/Retira" />
+      <CheckBox fx:id="checkTiraRetira" layoutX="13.0" layoutY="139.0" mnemonicParsing="false" text="Tira/Retira" />
+      <Label layoutX="14.0" layoutY="88.0" prefHeight="19.0" prefWidth="163.0" text="Quantidade do Orçamento">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtQtdOrc" layoutX="11.0" layoutY="107.0" prefHeight="25.0" prefWidth="163.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
    </children>
 </AnchorPane>

@@ -3,18 +3,24 @@ package gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import gui.util.Alerts;
 import gui.util.Constraints;
+import gui.util.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class TiragemMioloController implements Initializable {
 
 	@FXML
 	private TextField txtFormato;
+	
+	@FXML
+	private TextField txtQtdOrc;
 	
 	@FXML
 	private TextField txtMontagem;
@@ -48,8 +54,18 @@ public class TiragemMioloController implements Initializable {
 	
 	@FXML
 	public void onBtCalcularAction() {
-		
-			System.out.println(checkTiraRetira.selectedProperty().getValue());
+		if(testeInicializazaoCamposVaziu() == 0) {
+			int formato = Utils.tryParseToInt(txtFormato.getText());
+			double acerto = Utils.tryParseToDouble(txtQtdFolhasAcerto.getText());
+			double perda = Utils.tryParseToDouble(txtQtdFolhasPerda.getText());
+			int montagem = Utils.tryParseToInt(txtMontagem.getText());
+			int QtdOrc = Utils.tryParseToInt(txtQtdOrc.getText());
+			int corFrente = Utils.tryParseToInt(txtCorFrente.getText());
+			int corVerso = Utils.tryParseToInt(txtCorVerso.getText());
+			int qtdCorMaq = Utils.tryParseToInt(txtQtdCoresMaquina.getText());
+			int qtgPaginas = Utils.tryParseToInt(txtQtdPaginas.getText());
+		}
+			
 	
 		
 	}
@@ -66,6 +82,7 @@ public class TiragemMioloController implements Initializable {
 		Constraints.setTextFieldDouble(txtQtdFolhasAcerto);
 		Constraints.setTextFieldDouble(txtQtdFolhasPerda);
 		Constraints.setTextFieldInteger(txtQtdPaginas);
+		Constraints.setTextFieldInteger(txtQtdOrc);
 		
 		//Definindo o tamanho maximo de caracteres que um text pode ter
 		Constraints.setTextFieldMaxLength(txtCorFrente, 1);
@@ -76,6 +93,56 @@ public class TiragemMioloController implements Initializable {
 		Constraints.setTextFieldMaxLength(txtQtdPaginas, 6);
 		
 		
+	}
+	//Verifica se os campos estão sem valor e retorna um erro
+	public int testeInicializazaoCamposVaziu() {
+		int contadorDeErros = 0;
+		
+		if (txtFormato.getText()==null || txtFormato.getText().trim().equals("")) {
+			Alerts.showAlert("Campo: Formato", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			contadorDeErros += 1;
+		}
+
+		if (txtQtdFolhasAcerto.getText()==null || txtQtdFolhasAcerto.getText().trim().equals("")) {
+			Alerts.showAlert("Campo: Qtd Folhas Acerto", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			contadorDeErros += 1;
+		}
+		
+		if (txtQtdFolhasPerda.getText()==null || txtQtdFolhasPerda.getText().trim().equals("")) {
+			Alerts.showAlert("Campo: Qtd Folhas Perda", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			contadorDeErros += 1;
+		}
+		
+		if (txtMontagem.getText()==null || txtMontagem.getText().trim().equals("")) {
+			Alerts.showAlert("Campo: Montagem", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			contadorDeErros += 1;
+		}
+		
+		if (txtQtdOrc.getText()==null || txtQtdOrc.getText().trim().equals("")) {
+			Alerts.showAlert("Campo: Quantidade do orçamento", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			contadorDeErros += 1;
+		}
+		
+		if (txtCorFrente.getText()==null || txtCorFrente.getText().trim().equals("")) {
+			Alerts.showAlert("Campo: Cores Frente", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			contadorDeErros += 1;
+		}
+		
+		if (txtCorVerso.getText()==null || txtCorVerso.getText().trim().equals("")) {
+			Alerts.showAlert("Campo: Cores Verso", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			contadorDeErros += 1;
+		}	
+			
+		if (txtQtdCoresMaquina.getText()==null || txtQtdCoresMaquina.getText().trim().equals("")) {
+			Alerts.showAlert("Campo: Qtd Cores Máquina", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			contadorDeErros += 1;
+		}
+		
+		if (txtQtdPaginas.getText()==null || txtQtdPaginas.getText().trim().equals("")) {
+			Alerts.showAlert("Campo: Qtd Páginas", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			contadorDeErros += 1;
+		}
+		return contadorDeErros;
 	}
 
 	//Metodo que inicializa a tela
