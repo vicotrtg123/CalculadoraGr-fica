@@ -17,13 +17,14 @@ public class TiragemServicos {
 			Alerts.showAlert("Campo: Formato", null, "Informar um valor diferente de 0", AlertType.ERROR);
 		}else {
 
-			int imagensPorFolha = montagem * formato;
-			double totalDeFolhas= (QtdOrcamento/imagensPorFolha) + perda + Acerto;
+			double imagensPorFolha = montagem * formato;
+			double totalDeFolhas= (QtdOrcamento/imagensPorFolha);
+			double follhasAdd= perda + Acerto;
 			
-			
-			return totalDeFolhas;	
+			return Math.ceil(totalDeFolhas + follhasAdd) ;	
 		}
 		return 0.0;
+		
 
 	}
 	//Metodo que calcula a quantidade de entradas na máquina
@@ -39,6 +40,18 @@ public class TiragemServicos {
 
 		return quantidadeDeEntradas;
 		
+	}
+	//Metodo que verifica quantas cores tem o orçamento para mulltiplicar a tiragem
+	public static int multiplicadorTiragem(int corFrente , int corVerso) {
+		if(corFrente >= 1 && corVerso >=1) {
+			return 2;
+		}else {
+			return 1;
+		}
+	}
+	//metodo que calcula a tiragem
+	public static double calculoDeTiragem(double totalDeFolhas , int multiplicadorTiragem, int formato) {
+		return (totalDeFolhas * formato) * multiplicadorTiragem;
 	}
 	
 }

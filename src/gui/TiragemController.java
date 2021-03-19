@@ -65,15 +65,14 @@ if(testeInicializazaoCaposVaziu() == 0) {
 	int corVerso = Utils.tryParseToInt(txtCorVerso.getText());
 	int qtdCorMaq = Utils.tryParseToInt(txtQtdCoresMaquina.getText());
 			
-		double Final = TiragemServicos.QtdTotalFolhas(perda, acerto, QtdOrc, montagem, formato);
+	double totaldeFolhas = TiragemServicos.QtdTotalFolhas(perda, acerto, QtdOrc, montagem, formato);
+	int multiplicadortiragem = TiragemServicos.multiplicadorTiragem(corFrente, corVerso);
+	double tiragemFinal = (TiragemServicos.calculoDeTiragem(totaldeFolhas, multiplicadortiragem, formato));
+
 		
-	labelResultado.setText(String.format("%.2f", Final));
+	labelResultado.setText(String.format("%.2f", totaldeFolhas));
 }
 
-
-	
-	
-		
 	}
 	
 	
