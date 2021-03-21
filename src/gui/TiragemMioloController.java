@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.services.TiragemServicos;
 import javafx.scene.control.Alert.AlertType;
 
 public class TiragemMioloController implements Initializable {
@@ -47,14 +48,14 @@ public class TiragemMioloController implements Initializable {
 	private Button btCalcular;
 	
 	@FXML
-	private CheckBox checkTiraRetira;
+	private CheckBox checkMioloDobrado;
 	
 	@FXML
 	private TextField txtQtdPaginas;
 	
 	@FXML
 	public void onBtCalcularAction() {
-		if(testeInicializazaoCamposVaziu() == 0) {
+		if(testeInicializazaoCamposVazio() == 0) {
 			int formato = Utils.tryParseToInt(txtFormato.getText());
 			double acerto = Utils.tryParseToDouble(txtQtdFolhasAcerto.getText());
 			double perda = Utils.tryParseToDouble(txtQtdFolhasPerda.getText());
@@ -64,6 +65,19 @@ public class TiragemMioloController implements Initializable {
 			int corVerso = Utils.tryParseToInt(txtCorVerso.getText());
 			int qtdCorMaq = Utils.tryParseToInt(txtQtdCoresMaquina.getText());
 			int qtgPaginas = Utils.tryParseToInt(txtQtdPaginas.getText());
+			
+			boolean miolo = checkMioloDobrado.selectedProperty().getValue();
+			int qtdEntradas = TiragemServicos.qtdEntradas(corFrente, corVerso, qtdCorMaq);
+			int verificaFrenteVerso = TiragemServicos.multiplicadorTiragem(corFrente, corVerso);
+			double totalFolhas = TiragemServicos.QtdTotalFolhasPaginas(perda, acerto, QtdOrc, montagem, formato, qtgPaginas, miolo, verificaFrenteVerso);
+			double tiragem = TiragemServicos.calculoDeTiragemPaginas(totalFolhas, qtdEntradas, formato);
+			
+			
+			
+			labelResultado.setText(String.format("%.2f", tiragem));
+			
+			
+			
 		}
 			
 	
@@ -95,51 +109,51 @@ public class TiragemMioloController implements Initializable {
 		
 	}
 	//Verifica se os campos estão sem valor e retorna um erro
-	public int testeInicializazaoCamposVaziu() {
+	public int testeInicializazaoCamposVazio() {
 		int contadorDeErros = 0;
 		
 		if (txtFormato.getText()==null || txtFormato.getText().trim().equals("")) {
-			Alerts.showAlert("Campo: Formato", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			Alerts.showAlert("Campo: Formato", null, "O campo não pode ser vazio", AlertType.ERROR);
 			contadorDeErros += 1;
 		}
 
 		if (txtQtdFolhasAcerto.getText()==null || txtQtdFolhasAcerto.getText().trim().equals("")) {
-			Alerts.showAlert("Campo: Qtd Folhas Acerto", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			Alerts.showAlert("Campo: Qtd Folhas Acerto", null, "O campo não pode ser vazio", AlertType.ERROR);
 			contadorDeErros += 1;
 		}
 		
 		if (txtQtdFolhasPerda.getText()==null || txtQtdFolhasPerda.getText().trim().equals("")) {
-			Alerts.showAlert("Campo: Qtd Folhas Perda", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			Alerts.showAlert("Campo: Qtd Folhas Perda", null, "O campo não pode ser vazio", AlertType.ERROR);
 			contadorDeErros += 1;
 		}
 		
 		if (txtMontagem.getText()==null || txtMontagem.getText().trim().equals("")) {
-			Alerts.showAlert("Campo: Montagem", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			Alerts.showAlert("Campo: Montagem", null, "O campo não pode ser vazio", AlertType.ERROR);
 			contadorDeErros += 1;
 		}
 		
 		if (txtQtdOrc.getText()==null || txtQtdOrc.getText().trim().equals("")) {
-			Alerts.showAlert("Campo: Quantidade do orçamento", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			Alerts.showAlert("Campo: Quantidade do orçamento", null, "O campo não pode ser vazio", AlertType.ERROR);
 			contadorDeErros += 1;
 		}
 		
 		if (txtCorFrente.getText()==null || txtCorFrente.getText().trim().equals("")) {
-			Alerts.showAlert("Campo: Cores Frente", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			Alerts.showAlert("Campo: Cores Frente", null, "O campo não pode ser vazio", AlertType.ERROR);
 			contadorDeErros += 1;
 		}
 		
 		if (txtCorVerso.getText()==null || txtCorVerso.getText().trim().equals("")) {
-			Alerts.showAlert("Campo: Cores Verso", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			Alerts.showAlert("Campo: Cores Verso", null, "O campo não pode ser vazio", AlertType.ERROR);
 			contadorDeErros += 1;
 		}	
 			
 		if (txtQtdCoresMaquina.getText()==null || txtQtdCoresMaquina.getText().trim().equals("")) {
-			Alerts.showAlert("Campo: Qtd Cores Máquina", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			Alerts.showAlert("Campo: Qtd Cores Máquina", null, "O campo não pode ser vazio", AlertType.ERROR);
 			contadorDeErros += 1;
 		}
 		
 		if (txtQtdPaginas.getText()==null || txtQtdPaginas.getText().trim().equals("")) {
-			Alerts.showAlert("Campo: Qtd Páginas", null, "O campo não pode ser vaziu", AlertType.ERROR);
+			Alerts.showAlert("Campo: Qtd Páginas", null, "O campo não pode ser vazio", AlertType.ERROR);
 			contadorDeErros += 1;
 		}
 		return contadorDeErros;

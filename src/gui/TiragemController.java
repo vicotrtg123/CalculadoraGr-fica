@@ -70,7 +70,7 @@ if(testeInicializazaoCaposVaziu() == 0) {
 	double tiragemFinal = (TiragemServicos.calculoDeTiragem(totaldeFolhas, multiplicadortiragem, formato));
 
 		
-	labelResultado.setText(String.format("%.2f", totaldeFolhas));
+	labelResultado.setText(String.format("%.2f", tiragemFinal));
 }
 
 	}
