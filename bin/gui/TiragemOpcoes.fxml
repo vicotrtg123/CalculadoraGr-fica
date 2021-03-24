@@ -17,6 +17,7 @@
             </Label>
           <Button fx:id="btTiragem" mnemonicParsing="false" onAction="#onBtTiragemAction" text="Tiragem" />
             <Button fx:id="btTiragemMiolo" mnemonicParsing="false" onAction="#onBtTiragemMioloAction" prefHeight="25.0" prefWidth="142.0" text="Tiragem com Páginas" />
+            <Button fx:id="btTiragemFlexo" mnemonicParsing="false" onAction="#onBtTiragemFlexoAction" prefHeight="25.0" prefWidth="142.0" text="Tiragem Flexo" />
         </items>
       </ToolBar>
    </children>

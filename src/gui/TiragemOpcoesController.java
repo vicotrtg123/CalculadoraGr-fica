@@ -26,6 +26,16 @@ public class TiragemOpcoesController implements Initializable{
 	private Button btTiragemMiolo;
 	
 	@FXML
+	private Button btTiragemFlexo;
+	
+	@FXML
+	public void onBtTiragemFlexoAction(ActionEvent evento) {
+		Stage parenteStage = Utils.currentStage(evento);
+		
+		criarTelaCalculoTiragemFlexo("/gui/TiragemFlexo.fxml", parenteStage);
+	}
+	
+	@FXML
 	public void onBtTiragemAction(ActionEvent evento) {
 		Stage parenteStage = Utils.currentStage(evento);
 		
@@ -90,4 +100,26 @@ public class TiragemOpcoesController implements Initializable{
 		
 	}
 	
+	//Metodo que cria a tela do calculo de tiragem Flexo
+		private void criarTelaCalculoTiragemFlexo(String nomeAbsoluto, Stage parentstage) {
+			try {
+				FXMLLoader loader =  new FXMLLoader(getClass().getResource(nomeAbsoluto));
+				Pane pane = loader.load();
+				
+				Stage dialogStage = new Stage();
+				dialogStage.setTitle("Digite os dados para o calculo da tiragem");
+				dialogStage.setScene(new Scene(pane));
+				dialogStage.setResizable(true);
+				dialogStage.initOwner(parentstage);
+				dialogStage.initModality(Modality.WINDOW_MODAL);
+				dialogStage.showAndWait();
+				
+				
+			}
+			catch (IOException e) {
+				Alerts.showAlert("Erro", "Erro para criar a janela de calculo de TiragemMiolo", e.getMessage(), AlertType.ERROR);
+			}
+			
+			
+		}
 }
